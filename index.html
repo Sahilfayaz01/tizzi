@@ -21,4 +21,89 @@
     h1 {
       color: black;
       font-size: 24px;
-     
+      margin-bottom: 20px;
+      z-index: 10;
+    }
+
+    .snowflake {
+      position: fixed;
+      top: -50px;
+      font-size: 20px;
+      color: white;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      100% {
+        transform: translateY(110vh) translateX(30px);
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .yes {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .no {
+      background-color: #f44336;
+      color: white;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hey Phizza, I guess you trust me now. Why don’t you accept my request on Instagram?</h1>
+  <div class="buttons">
+    <button class="button yes" onclick="addMe()">OK, I will add you</button>
+    <button id="noButton" class="button no" onmouseover="moveButton()">No, I will not add you</button>
+  </div>
+
+  <script>
+    const noButton = document.getElementById('noButton');
+
+    // Redirect function
+    function addMe() {
+      window.location.href = 'https://instagram.com/sahilfayaz01';
+    }
+
+    // Move "No" button to a random position
+    function moveButton() {
+      const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+      noButton.style.left = `${x}px`;
+      noButton.style.top = `${y}px`;
+      noButton.style.position = 'absolute';
+    }
+
+    // Snowflakes
+    for (let i = 0; i < 50; i++) {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.style.left = Math.random() * 100 + 'vw';
+      snowflake.style.animationDuration = Math.random() * 5 + 2 + 's';
+      snowflake.style.opacity = Math.random();
+      snowflake.textContent = '❄';
+      document.body.appendChild(snowflake);
+    }
+  </script>
+</body>
+</html>
